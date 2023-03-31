@@ -14,8 +14,8 @@ export function InputSelect<TItem>({
 }: InputSelectProps<TItem>) {
   const [selectedValue, setSelectedValue] = useState<TItem | null>(defaultValue ?? null)
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition>({
-    top: 0,
-    left: 0,
+    top: 0
+ 
   })
 
   const onChange = useCallback<InputSelectOnChange<TItem>>(
@@ -71,7 +71,7 @@ export function InputSelect<TItem>({
                 "RampInputSelect--dropdown-container-opened": isOpen,
               })}
               {...getMenuProps()}
-              style={{ top: dropdownPosition.top, left: dropdownPosition.left }}
+            
             >
               {renderItems()}
             </div>
@@ -119,13 +119,13 @@ export function InputSelect<TItem>({
 
 const getDropdownPosition: GetDropdownPositionFn = (target) => {
   if (target instanceof Element) {
-    const { top, left } = target.getBoundingClientRect()
+    const { top} = target.getBoundingClientRect()
     const { scrollY } = window
     return {
       top: scrollY + top + 63,
-      left,
+    
     }
   }
 
-  return { top: 0, left: 0 }
+  return { top: 0 }
 }
